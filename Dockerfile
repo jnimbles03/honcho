@@ -25,7 +25,7 @@ COPY uv.lock pyproject.toml /app/
 #   docker build --build-arg INSTALL_LANCEDB=true .
 ARG INSTALL_LANCEDB=false
 ARG INSTALL_SURPRISAL=false
-RUN --mount=type=cache,id=uv-cache,target=/root/.cache/uv \
+RUN --mount=type=cache,id=s/e07c0a31-5d6a-497c-86d7-628423a62c5a-/root/.cache/uv,target=/root/.cache/uv \
     set --; \
     case "$INSTALL_LANCEDB" in \
         true) set -- "$@" --extra lancedb ;; \
@@ -79,4 +79,4 @@ USER app
 
 EXPOSE 8000
 
-CMD ["fastapi", "run", "--host", "0.0.0.0", "src/main.py"]
+CMD ["sh", "/app/docker/entrypoint.sh"]
